@@ -1,47 +1,33 @@
 <html ng-app="myapp">
     <head>
-        <title>Hello AngularJS</title>
+        <title>Notes application</title>
         <script src="js/angular.js"></script>
-        <script src="js/hello.js"></script>
+        <script src="app/notes.js"></script>
+
         <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="app/styles.css">
     </head>
-    <body>
-        <div>
-            <div ng-controller="HelloController">
-                <div class="alert alert-info" >
 
-                    Your name: <input ng-model="name" placeholder="Enter your name">
-                    <button ng-click="update()" class="btn btn-info">update</button> {{name.length}}
-                </div>
-                <div class="alert alert-success">
-                    <p>{{name}}</p>
-                    <p>{{greeting}}</p>
-                </div>
+    <body ng-controller="NotesController">
+<!--        <div ng-repeat="note in notes">
+            <p class="note">{{note.text}}</p>
+        </div>
+
+        <div class="list-group">
+            <a href="#" class="list-group-item {{note.active ? 'active' : ''}}" ng-repeat="note in notes">
+                <h4 class="list-group-item-heading">{{note.text}}</h4>
+                <p class="list-group-item-text" >some note...</p>
+            </a>
+        </div>-->
+
+        <div class="panel panel-info" ng-repeat="note in notes">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{note.text}}</h3>
             </div>
-
-            <div ng-controller="BirdsController">
-                <div class="col-lg-6 alert-dismissable">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <input type="checkbox" aria-label="Filter" ng-model="filtering">
-                      </span>
-                        <input type="text" class="form-control" aria-label="Filter" ng-model="searchFor" placeholder="Filter">
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <ul class="list-group" ng-repeat="bird in filtering ? filtered = (birds | filter:searchFor) : birds">
-                        <li class="list-group-item" ng-class="bird.count == '999+' ? 'list-group-item-danger' : 'list-group-item-info'">
-                            <span class="badge">{{bird.count}}</span>
-                            {{bird.name}}
-                        </li>
-                    </ul>
-                </div>
-
-
+            <div class="panel-body">
+                Some text..
             </div>
-
         </div>
     </body>
 </html>
