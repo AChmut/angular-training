@@ -1,45 +1,62 @@
 <html ng-app="myapp">
-    <head>
-        <title>Notes application</title>
-        <script src="js/angular.js"></script>
-        <script src="app/notes.js"></script>
+<head>
+    <title>Notes application</title>
+    <script src="js/angular.js"></script>
+    <script src="app/notes.js"></script>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="app/styles.css">
-    </head>
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/styles.css">
+</head>
 
-    <body ng-controller="NotesController">
-        <br>
-        <div>
-            <div class="alert alert-info" >
-                Add note: <input ng-model="text" placeholder="Enter your note">
-                <button ng-click="add()" class="btn btn-warning">Add note</button>
-                <button ng-click="refresh()" class="btn btn-info">Refresh</button>
-            </div>
+<body ng-controller="NotesController">
+<br>
+
+<div>
+    <div class="alert alert-info">
+        Add note: <input ng-model="text" placeholder="Enter your note">
+        <button ng-click="add()" class="btn btn-warning">Add note</button>
+        <button ng-click="refresh()" class="btn btn-info">Refresh</button>
+    </div>
+</div>
+
+<br>
+
+<br>
+
+<div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>
+
+
+<div class="note" ng-repeat="note in notes">
+    <div class="note panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-file"></span>
+                {{note.text}}
+            </h3>
         </div>
+        <div class="panel-footer left_wrap">
+            <span class="label label-info">{{::note.time | date: 'HH:mm dd.MM.yyyy'}}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <br>
+            <a href="#" ng-click="sendToTop(note._id)">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-edit"></span>
+            </a>
+            <a href="#" ng-click="remove(note._id)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
 
-        <div class="note panel panel-danger" ng-if="error">
-            <div class="panel-heading">
-                <h3 class="panel-title">Error</h3>
-            </div>
-            <div class="panel-body">
-                <h3 class="panel-title">{{error}}</h3>
-            </div>
         </div>
-
-        <div class="note panel panel-info" ng-repeat="note in notes">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{note.text}}</h3>
-            </div>
-            <div class="panel-footer">
-                <button ng-click="sendToTop(note.id)" class="btn btn-warning">Send To Top</button>
-                <button ng-click="remove(note._id)" class="btn btn-danger">Remove</button>
-            </div>
-        </div>
+    </div>
+    <br>
+</div>
 
 
-
-    </body>
+</body>
 </html>
