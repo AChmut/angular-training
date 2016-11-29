@@ -39,6 +39,10 @@ module.controller('NotesController',
             });
         };
 
+        $scope.refresh = function() {
+            update();
+        };
+
         //$interval(update, 200);
 
         update();

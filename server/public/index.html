@@ -13,7 +13,8 @@
         <div>
             <div class="alert alert-info" >
                 Add note: <input ng-model="text" placeholder="Enter your note">
-                <button ng-click="add()" class="btn btn-info">Add note</button>
+                <button ng-click="add()" class="btn btn-warning">Add note</button>
+                <button ng-click="refresh()" class="btn btn-info">Refresh</button>
             </div>
         </div>
 
@@ -33,8 +34,8 @@
                 <h3 class="panel-title">{{note.text}}</h3>
             </div>
             <div class="panel-footer">
-                <button ng-click="sendToTop(note.id)" class="btn btn-info">Send To Top</button>
-                <button ng-click="remove(note.id)" class="btn btn-info">Remove</button>
+                <button ng-click="sendToTop(note.id)" class="btn btn-warning">Send To Top</button>
+                <button ng-click="remove(note.id)" class="btn btn-danger">Remove</button>
             </div>
         </div>
 
