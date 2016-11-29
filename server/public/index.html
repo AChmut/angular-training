@@ -32,7 +32,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-file"></span>
-                {{note.text}}
+                {{::note.text}}
             </h3>
         </div>
         <div class="panel-footer left_wrap">
@@ -42,14 +42,15 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <a href="#" ng-click="sendToTop(note._id)">
-                <span class="glyphicon glyphicon-arrow-up"></span>
-            </a>
+
             <a href="#">
                 <span class="glyphicon glyphicon-edit"></span>
             </a>
             <a href="#" ng-click="remove(note._id)">
                 <span class="glyphicon glyphicon-trash"></span>
+            </a>
+            <a href="#" ng-click="sendToTop(note._id)" ng-if="!$first">
+                <span class="glyphicon glyphicon-arrow-up"></span>
             </a>
 
         </div>

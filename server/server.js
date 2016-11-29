@@ -35,15 +35,23 @@ app.use(session({
     saveUninitialized: true
 }));
 
-var getMinOrder = function(cb) {
-    db.notes.find().sort( { order: 1 } ).limit(1).toArray(function(err, items) {
+var getOrderBy = function(by, cb) {
+    db.notes.find().sort( { order: by } ).limit(1).toArray(function(err, items) {
         cb(items.length == 0 ? 0 : items[0].order);
     });
 }
 
+var getMinOrder = function(cb) {
+    getOrderBy(1, cb);
+};
+
+var getMaxOrder = function(cb) {
+    getOrderBy(-1, cb);
+};
+
 app.get("/notes", function(req,res) {
     console.log("get notes");
-    db.notes.find(req.query).toArray(function(err, items) {
+    db.notes.find(req.query).sort( { order: 1 } ).toArray(function(err, items) {
         res.send(items);
     });
 
@@ -51,9 +59,9 @@ app.get("/notes", function(req,res) {
 
 app.put("/notes", function(req, res) {
     console.log("put notes: " + req.body.text);
-    getMinOrder(function(order) {
+    getMaxOrder(function(order) {
         req.body.time = new Date();
-        req.body.order = order ? order - 1 : 0;
+        req.body.order = order + 1;
         db.notes.insert(req.body);
         res.end();
     });
@@ -77,7 +85,16 @@ app.post("/notes/sendTotTop", function(req,res) {
     var id = req.body.params.id;
     console.log("post notes/sendTotTop: " + id);
 
-
+    getMinOrder(function(order) {
+        db.notes.update(
+            {_id: new ObjectID(id)},
+            {
+                $set:
+                 { order: order - 1 }
+            },
+            {upsert:true}
+        );
+    });
 
     res.end();
 });
