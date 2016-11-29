@@ -8,7 +8,7 @@ module.controller('NotesController',
 
 
         var update = function () {
-            var greetingUrl = $http.get("http://localhost:30000/greeting", {params:
+            var greetingUrl = $http.get("/greeting", {params:
                 {
                     name: $scope.name}
                 });
@@ -16,7 +16,7 @@ module.controller('NotesController',
                 $scope.greeting = greeting;
             })
 
-            var notesUrl = $http.get("http://localhost:30000/notes");
+            var notesUrl = $http.get("/notes");
             notesUrl.success(function (notes) {
                     $scope.error = null;
                     $scope.notes = notes;

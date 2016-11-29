@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 });
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-app.listen(30000);
+app.listen(8888);
 
 app.get("/greeting", function (req, res) {
     var name = req.query.name;
