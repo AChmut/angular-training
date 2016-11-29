@@ -12,6 +12,7 @@ var bodyParser = require('body-parser');
 
 var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
+var ObjectID = require('mongodb').ObjectID;
 
 var db = new Db('tutor',
     new Server("localhost", 27017, {safe: true},
@@ -50,16 +51,15 @@ app.put("/notes", function(req, res) {
 
 app.delete("/notes", function(req,res) {
     var id = req.query.id;
-    console.log("delete notes: " + req.query.id);
-    var notes = req.session.notes||[];
-    var updatedNotesList = [];
-    for (var i=0; i<notes.length; i++) {
-        if (notes[i].id != id) {
-            updatedNotesList.push(notes[i]);
+    console.log("delete notes: " + id);
+    db.notes.remove({_id: new ObjectID(req.query.id)}, function(err) {
+        if (err) {
+            console.log("Error: " + err);
+            res.send("Failed");
+        } else {
+            res.send("Success");
         }
-    }
-    req.session.notes = updatedNotesList;
-    res.end();
+    })
 });
 
 app.post("/notes/sendTotTop", function(req,res) {
