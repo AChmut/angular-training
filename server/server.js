@@ -50,3 +50,23 @@ app.delete("/notes", function(req,res) {
     req.session.notes = updatedNotesList;
     res.end();
 });
+
+app.post("/notes/sendTotTop", function(req,res) {
+    var id = req.body.params.id;
+    console.log("post notes/sendTotTop: " + id);
+    var notes = req.session.notes||[];
+    var updatedNotesList = [];
+    for (var i=0; i<notes.length; i++) {
+        if (notes[i].id == id) {
+            updatedNotesList.push(notes[i]);
+            break;
+        }
+    }
+    for (var i=0; i<notes.length; i++) {
+        if (notes[i].id != id) {
+            updatedNotesList.push(notes[i]);
+        }
+    }
+    req.session.notes = updatedNotesList;
+    res.end();
+});

@@ -33,6 +33,12 @@ module.controller('NotesController',
             });
         };
 
+        $scope.sendToTop = function(id) {
+            $http.post("/notes/sendTotTop", {params: {id:id}}).success(function() {
+                update();
+            });
+        };
+
         //$interval(update, 200);
 
         update();
