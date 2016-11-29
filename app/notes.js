@@ -14,7 +14,7 @@ module.controller('NotesController',
                 }
             );
             url.error(function () {
-                $scope.error = "Error connecting to the server";
+                $scope.error = "Can't connect to the server";
             })
         }
 
