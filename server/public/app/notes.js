@@ -8,14 +8,6 @@ module.controller('NotesController',
 
 
         var update = function () {
-            var greetingUrl = $http.get("/greeting", {params:
-                {
-                    name: $scope.name}
-                });
-            greetingUrl.success(function (greeting) {
-                $scope.greeting = greeting;
-            });
-
             var notesUrl = $http.get("/notes");
             notesUrl.success(function (notes) {
                     $scope.error = null;
@@ -27,7 +19,21 @@ module.controller('NotesController',
             })
         };
 
-        $interval(update, 200);
+        $scope.add = function() {
+            var note = { text: $scope.text };
+            $http.put("/notes", note) .success(function() {
+                $scope.text = "";
+                update();
+            });
+        };
+
+        $scope.remove = function(id) {
+            $http.delete("/notes", {params: {id:id}}).success(function() {
+                update();
+            });
+        };
+
+        //$interval(update, 200);
 
         update();
     });
