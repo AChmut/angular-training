@@ -14,7 +14,7 @@ module.controller('NotesController',
                 });
             greetingUrl.success(function (greeting) {
                 $scope.greeting = greeting;
-            })
+            });
 
             var notesUrl = $http.get("/notes");
             notesUrl.success(function (notes) {
@@ -25,9 +25,9 @@ module.controller('NotesController',
             notesUrl.error(function () {
                 $scope.error = "Can't connect to the server";
             })
-        }
+        };
 
-        $interval(update, 2000);
+        $interval(update, 200);
 
         update();
     });
