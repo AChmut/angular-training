@@ -2,6 +2,7 @@
   "name": "tutorial",
   "version": "0.0.1",
   "dependencies": {
+    "console-stamp": "^0.2.4",
     "express": "~4.12.4"
   }
 }

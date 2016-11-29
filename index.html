@@ -10,16 +10,14 @@
 
     <body ng-controller="NotesController">
         <br>
-       <!--<div ng-repeat="note in notes">
-            <p class="note">{{note.text}}</p>
+        <div>
+            <div class="alert alert-info" >
+                Your name: <input ng-model="name" placeholder="Enter your name">
+                {{greeting}}
+            </div>
         </div>
 
-        <div class="list-group">
-            <a href="#" class="list-group-item {{note.active ? 'active' : ''}}" ng-repeat="note in notes">
-                <h4 class="list-group-item-heading">{{note.text}}</h4>
-                <p class="list-group-item-text" >some note...</p>
-            </a>
-        </div>-->
+        <br>
 
         <div class="note panel panel-danger" ng-if="error">
             <div class="panel-heading">
