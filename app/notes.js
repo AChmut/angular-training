@@ -4,18 +4,18 @@ module.controller('NotesController',
 
     function($scope, $http) {
         $scope.notes = [];
+        $scope.error = null;
 
 
         var update = function () {
-            /*$http.get("/notes").success(function (notes) {
+            var url = $http.get("http://localhost:30000/notes");
+            url.success(function (notes) {
                     $scope.notes = notes;
                 }
-            );*/
-            $scope.notes = notes = [
-                {text: "First note"},
-                {text: "Second note"},
-                {text: "Third note"}
-            ];
+            );
+            url.error(function () {
+                $scope.error = "Error connecting to the server";
+            })
         }
 
         update();
