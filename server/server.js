@@ -44,7 +44,7 @@ var getOrderBy = function(by, cb) {
     db.notes.find().sort( { order: by } ).limit(1).toArray(function(err, items) {
         cb(items.length == 0 ? 0 : items[0].order);
     });
-}
+};
 
 var getMinOrder = function(cb) {
     getOrderBy(1, cb);
