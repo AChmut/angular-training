@@ -19,7 +19,6 @@ module.controller('NotesController',
                 function (response) {
                     $scope.error = null;
                     $scope.notes = response.data;
-                    //alert(response.data);
                 },
                 function (error) {
                     $scope.error = "Can't connect to the server: " + error;
@@ -52,16 +51,6 @@ module.controller('NotesController',
             $http.get("/sections")
                 .success(function(sections) {
                     $scope.sections = sections;
-                    if ($scope.activeSection == null &&
-                        $scope.sections.length>0) {
-                        $scope.activeSection =
-                            $scope.sections[0].title;
-                    }
-                    alert($('#myTabs'));
-                    //update();
-                    var firstTab = $('#sectionTabs a:first');
-                    firstTab.tab('show');
-                    $location.path(firstTab.prop('href'));
                 });
         };
 

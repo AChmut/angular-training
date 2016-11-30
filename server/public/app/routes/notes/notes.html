@@ -1,7 +1,7 @@
 <div class="panel-heading">
     <h3 class="panel-title">
         Add your note to
-        <a ng-href="#/section/{{activeSection}}">
+        <a ng-href="#/section/{{activeSection}}/add">
             {{activeSection}}</a>
     </h3> </div>
 
@@ -26,10 +26,10 @@
             <!--<a href="#">-->
             <!--<span class="glyphicon glyphicon-edit"></span>-->
             <!--</a>-->
-            <a href="#" ng-click="remove(note._id)">
+            <a ng-click="remove(note._id)">
                 <span class="glyphicon glyphicon-trash"></span>
             </a>
-            <a href="#" ng-click="sendToTop(note._id)" ng-if="!$first && sort == 'order'">
+            <a ng-click="sendToTop(note._id)" ng-if="!$first && sort == 'order'">
                 <span class="glyphicon glyphicon-arrow-up"></span>
             </a>
 
