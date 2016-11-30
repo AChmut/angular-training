@@ -44,4 +44,15 @@ module.controller('NotesController',
         //$interval(update, 200);
 
         update();
+
+        var readSections = function() {
+
+            $http.get("/sections")
+                .success(function(sections) {
+                    $scope.sections = sections;
+                    update();
+                });
+        };
+
+        readSections();
     });

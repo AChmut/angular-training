@@ -17,11 +17,16 @@ var ObjectID = require('mongodb').ObjectID;
 var db = new Db('tutor',
     new Server("localhost", 27017, {safe: true},
         {auto_reconnect: true}, {}));
+
 db.open(function(){
 
     db.collection('notes', function(error, notes) {
         db.notes = notes;
         console.log("mongo db is opened! " + notes);
+    });
+
+    db.collection('sections', function(error, sections) {
+        db.sections = sections;
     });
 });
 
@@ -101,4 +106,11 @@ app.post("/notes/sendTotTop", function(req,res) {
     });
 
     res.end();
+});
+
+app.get("/sections", function(req,res) {
+    console.log("GET sections");
+    db.sections.find(req.query).toArray(function(err, items) {
+        res.send(items);
+    });
 });
