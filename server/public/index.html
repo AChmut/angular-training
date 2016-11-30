@@ -13,6 +13,14 @@
 </head>
 
 <body ng-controller="NotesController">
+<div class="input-group" style="padding-bottom:20px">
+    <input type="text" class="form-control"
+           placeholder="New section name" ng-model="newSection">
+    <span class="input-group-btn">
+        <button class="btn btn-default"
+                ng-click="addSection()">Add</button>
+    </span>
+</div>
 <br>
 
 <ul class="list-group">
