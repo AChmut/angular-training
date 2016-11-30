@@ -1,3 +1,5 @@
+
+
 <div class="input-group" style="padding-bottom:20px">
 <input type="text" class="form-control"
        placeholder="New section name" ng-model="newSection">
@@ -22,6 +24,7 @@
 </div>-->
 
 <!--<div class="container" ng-view></div>-->
+
 <ul class="list-group" dnd-list="sections">
     <li href="#" class="list-group-item"
         dnd-draggable="section"
@@ -34,6 +37,12 @@
     </li>
 </ul>
 
+<div class="panel-heading">
+    <h3 class="panel-title">
+        Add your note to
+        <a ng-href="#/section/{{activeSection}}">{{activeSection}}</a>
+    </h3>
+</div>
 
 <div>
     <div class="alert alert-info">
@@ -43,10 +52,6 @@
     </div>
 </div>
 <br>
-
-<br>
-
-<div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>
 
 <div class="note" ng-repeat="note in notes">
     <div class="note panel panel-info">
