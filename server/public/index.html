@@ -15,6 +15,16 @@
 <body ng-controller="NotesController">
 <br>
 
+<ul class="list-group">
+    <li href="#" class="list-group-item"
+        ng-repeat="section in sections"
+        ng-click="showSection(section)"
+        ng-class="{active: section.title==activeSection}">{{section.title}}</li>
+</ul>
+
+<br>
+
+
 <div>
     <div class="alert alert-info">
         Add note: <input ng-model="text" placeholder="Enter your note">
@@ -71,11 +81,6 @@
     <br>
 </div>
 
-<ul class="list-group">
-    <li href="#" class="list-group-item"
-        ng-repeat="section in sections">
-        {{section.title}}</li>
-</ul>
 
 </body>
 </html>

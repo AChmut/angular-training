@@ -10,7 +10,10 @@ module.controller('NotesController',
 
         var update = function () {
             $http.get("/notes", {
-                params: { sort: $scope.sort }
+                params: {
+                    sort: $scope.sort,
+                    section: $scope.activeSection
+                }
             }).then(
                 function (response) {
                         $scope.error = null;
@@ -50,9 +53,21 @@ module.controller('NotesController',
             $http.get("/sections")
                 .success(function(sections) {
                     $scope.sections = sections;
+                    if ($scope.activeSection == null &&
+                        $scope.sections.length>0) {
+                        $scope.activeSection =
+                            $scope.sections[0].title;
+                    }
                     update();
                 });
         };
 
+        $scope.showSection = function(section) {
+            $scope.activeSection = section.title;
+            update();
+        }
+
         readSections();
+
+
     });
