@@ -1,5 +1,5 @@
 module.controller("ViewSectionController", function($scope, $http, $routeParams, $location) {
-    $scope.section = $routeParams.name;
+    $scope.section = $routeParams.section;
 
     var params = {params: {section:$routeParams.name}};
 
@@ -9,18 +9,18 @@ module.controller("ViewSectionController", function($scope, $http, $routeParams,
 
     $scope.add = function() {
         if (!$scope.text || $scope.text.length==0) {
-            $scope.error = "Text shouldn't be empty";
+            alert("Text shouldn't be empty");
             return;
         }
         var note = {
             text: $scope.text,
-            section: $scope.activeSection
+            section: $scope.section
         };
         $http.put("/notes", note).then($scope.cancel);
 
     };
 
     $scope.cancel = function() {
-        $location.path($scope.section);
+        $location.path('/section_' + $scope.section);
     };
 });
