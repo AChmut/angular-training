@@ -9,6 +9,7 @@ module.controller('NotesController',
 
 
         var update = function () {
+
             $http.get("/notes", {
                 params: {
                     sort: $scope.sort,
@@ -25,7 +26,14 @@ module.controller('NotesController',
         };
 
         $scope.add = function() {
-            var note = { text: $scope.text };
+            if (!$scope.text || $scope.text.length==0) {
+                $scope.error = "Text shouldn't be empty";
+                return;
+            }
+            var note = {
+                text: $scope.text,
+                section: $scope.activeSection
+            };
             $http.put("/notes", note).then(update);
         };
 

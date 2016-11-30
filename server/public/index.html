@@ -21,7 +21,18 @@
                 ng-click="addSection()">Add</button>
     </span>
 </div>
-<br>
+<!--<div class="container">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SORT BY {{sort}}
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            &lt;!&ndash; Add header here &ndash;&gt;
+            <li><a href="#" ng-click="updateSort('order')">Sort by order</a></li>
+            <li><a href="#" ng-click="updateSort('text')">Sort alphabetically</a></li>
+            <li><a href="#" ng-click="updateSort('date')">Sort by date</a></li>
+        </ul>
+    </div>
+</div>-->
 
 <ul class="list-group">
     <li href="#" class="list-group-item"
@@ -29,8 +40,6 @@
         ng-click="showSection(section)"
         ng-class="{active: section.title==activeSection}">{{section.title}}</li>
 </ul>
-
-<br>
 
 
 <div>
@@ -41,18 +50,7 @@
     </div>
 </div>
 <br>
-<div class="container">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SORT BY {{sort}}
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <!-- Add header here -->
-            <li><a href="#" ng-click="updateSort('order')">Sort by order</a></li>
-            <li><a href="#" ng-click="updateSort('text')">Sort alphabetically</a></li>
-            <li><a href="#" ng-click="updateSort('date')">Sort by date</a></li>
-        </ul>
-    </div>
-</div>
+
 <br>
 
 <div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>
