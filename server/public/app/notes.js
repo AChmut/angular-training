@@ -1,5 +1,4 @@
-var module = angular.module('myapp', []);
-
+var module = angular.module('myapp', ['dndLists']);
 module.controller('NotesController',
 
     function($scope, $http, $interval) {
@@ -95,7 +94,7 @@ module.controller('NotesController',
         $scope.showSection = function(section) {
             $scope.activeSection = section.title;
             update();
-        }
+        };
 
         readSections();
 

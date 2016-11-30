@@ -6,7 +6,8 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-drag-and-drop-lists.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="app/notes.js"></script>
 
@@ -23,6 +24,8 @@
         <button class="btn btn-default"
                 ng-click="addSection()">Add</button>
     </span>
+    <input type="text" class="form-control"
+           placeholder="Filter" ng-model="sectionsFilter">
 </div>
 <!--<div class="container">
     <div class="dropdown">
@@ -37,12 +40,16 @@
     </div>
 </div>-->
 
-<ul class="list-group">
+<ul class="list-group" dnd-list="sections">
     <li href="#" class="list-group-item"
-        ng-repeat="section in sections"
+        dnd-draggable="section"
+        dnd-moved="sections.splice($index, 1); writeSections();"
+        ng-repeat="section in sections | filter: {title: sectionsFilter}"
+
         ng-click="showSection(section)"
-        ng-class="{active: section.title==activeSection}">{{section.title}}</li>
-</ul>
+        ng-class="{active: section.title==activeSection}">
+        {{section.title}}
+    </li> </ul>
 
 
 <div>
