@@ -1,8 +1,7 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">{{section}}</h3>
+<div>
+    <div class="alert alert-info">
+        Add note: <input ng-model="text" placeholder="Enter your note">
+        <button ng-click="add()" class="btn btn-warning">Add note</button>
+        <button ng-click="cancel()" class="btn btn-info">Cancel</button>
     </div>
-    <ul class="list-group" ng-repeat="note in notes">
-        <li class="list-group-item">{{note.text}}</li>
-    </ul>
 </div>

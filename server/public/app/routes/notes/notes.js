@@ -26,17 +26,7 @@ module.controller('NotesController',
                 });
         };
 
-        $scope.add = function() {
-            if (!$scope.text || $scope.text.length==0) {
-                $scope.error = "Text shouldn't be empty";
-                return;
-            }
-            var note = {
-                text: $scope.text,
-                section: $scope.activeSection
-            };
-            $http.put("/notes", note).then(update);
-        };
+
 
         $scope.remove = function(id) {
             $http.delete("/notes", {params: {id:id}}).success(update);
