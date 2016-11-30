@@ -11,6 +11,7 @@
 
     <script src="app/routes/routes.js"></script>
     <script src="app/routes/notes/notes.js"></script>
+    <script src="app/routes/viewSection/viewSection.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,6 +20,60 @@
 </head>
 
 <body ng-controller="NotesController">
+<div class="input-group" style="padding-bottom:20px">
+    <input type="text" class="form-control"
+           placeholder="New section name" ng-model="newSection">
+<span class="input-group-btn">
+        <button class="btn btn-default"
+                ng-click="addSection()">Add</button>
+    </span>
+    <input type="text" class="form-control"
+           placeholder="Filter" ng-model="sectionsFilter">
+</div>
+<!--<div class="container">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SORT BY {{sort}}
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            &lt;!&ndash; Add header here &ndash;&gt;
+            <li><a href="#" ng-click="updateSort('order')">Sort by order</a></li>
+            <li><a href="#" ng-click="updateSort('text')">Sort alphabetically</a></li>
+            <li><a href="#" ng-click="updateSort('date')">Sort by date</a></li>
+        </ul>
+    </div>
+</div>-->
+
+<!--<div class="container" ng-view></div>-->
+<ul class="list-group" dnd-list="sections">
+    <li href="#" class="list-group-item"
+        dnd-draggable="section"
+        dnd-moved="sections.splice($index, 1); writeSections();"
+        ng-repeat="section in sections | filter: {title: sectionsFilter}"
+
+        ng-click="showSection(section)"
+        ng-class="{active: section.title==activeSection}">
+        {{section.title}}
+    </li>
+</ul>
+
+<div class="panel-heading">
+    <h3 class="panel-title">
+        Add your note to
+        <a ng-href="#/section/{{activeSection}}">
+            {{activeSection}}</a>
+    </h3> </div>
+
+<div>
+    <div class="alert alert-info">
+        Add note: <input ng-model="text" placeholder="Enter your note">
+        <button ng-click="add()" class="btn btn-warning">Add note</button>
+        <button ng-click="refresh()" class="btn btn-info">Refresh</button>
+    </div>
+</div>
+<br>
+
+
+<div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>
 
 
 

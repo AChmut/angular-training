@@ -1,7 +1,8 @@
 
 module.controller('NotesController',
 
-    function($scope, $http, $interval) {
+    function($scope, $http, $routeParams, $location) {
+        $scope.activeSection = $routeParams.section;
         $scope.notes = [];
         $scope.error = null;
         $scope.sort = "order";
@@ -18,6 +19,7 @@ module.controller('NotesController',
                 function (response) {
                     $scope.error = null;
                     $scope.notes = response.data;
+                    //alert(response.data);
                 },
                 function (error) {
                     $scope.error = "Can't connect to the server: " + error;
@@ -93,6 +95,7 @@ module.controller('NotesController',
 
         $scope.showSection = function(section) {
             $scope.activeSection = section.title;
+            $location.path(section.title);
             update();
         };
 
