@@ -20,13 +20,6 @@
         Add note: <input ng-model="text" placeholder="Enter your note">
         <button ng-click="add()" class="btn btn-warning">Add note</button>
         <button ng-click="refresh()" class="btn btn-info">Refresh</button>
-        <select ng-model="order">
-            <option value="order">Sort by order</option>
-            <option value="text">Sort alphabetically</option>
-            <option value="date">Sort by date</option>
-        </select>
-
-
     </div>
 </div>
 <br>
@@ -56,11 +49,11 @@
             </h3>
         </div>
         <div class="panel-footer left_wrap">
-            <span class="label label-info">{{::note.time | date: 'HH:mm dd.MM.yyyy'}}</span>
+            <span class="label label-info">{{::note.time | date: 'HH:mm:ss dd.MM.yyyy'}}</span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
             <a href="#">
@@ -69,7 +62,7 @@
             <a href="#" ng-click="remove(note._id)">
                 <span class="glyphicon glyphicon-trash"></span>
             </a>
-            <a href="#" ng-click="sendToTop(note._id)" ng-if="!$first">
+            <a href="#" ng-click="sendToTop(note._id)" ng-if="!$first && sort == 'order'">
                 <span class="glyphicon glyphicon-arrow-up"></span>
             </a>
 

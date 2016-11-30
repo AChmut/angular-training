@@ -9,12 +9,10 @@ module.controller('NotesController',
 
 
         var update = function () {
-            var notesUrl = $http.get("/notes");
-            /*var notesUrl = $http.get("/notes", {
+            var notesUrl = $http.get("/notes", {
                 params: { sort: $scope.sort }
-            });*/
+            });
             notesUrl.success(function (notes) {
-                    alert('success: '  + notes);
                     $scope.error = null;
                     $scope.notes = notes;
                 }
