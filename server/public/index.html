@@ -26,15 +26,24 @@
 <div>
 
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs" role="tablist" id="sectionTabs">
 
         <li role="presentation" ng-repeat="section in sections">
-            <a href="#{{::section.title}}" ng-click="showSection(section)" aria-controls="profile" role="tab" data-toggle="tab">{{::section.title}}</a>
+            <a ng-href="#section_{{::section.title}}" aria-controls="profile" role="tab" data-toggle="tab">{{::section.title}}</a>
         </li>
 
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+        <li class="dropdown pull-right">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">User <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="disabled"><a href="#signin">Sign In</a></li>
+                <li><a href="#register">Register</a></li>
+            </ul>
         </li>
-        <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a>
+        <li class="dropdown pull-right">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#/sections/edit">Edit Sections</a></li>
+            </ul>
         </li>
     </ul>
 

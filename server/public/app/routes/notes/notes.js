@@ -57,7 +57,11 @@ module.controller('NotesController',
                         $scope.activeSection =
                             $scope.sections[0].title;
                     }
-                    update();
+                    alert($('#myTabs'));
+                    //update();
+                    var firstTab = $('#sectionTabs a:first');
+                    firstTab.tab('show');
+                    $location.path(firstTab.prop('href'));
                 });
         };
 
@@ -89,7 +93,11 @@ module.controller('NotesController',
             update();
         };
 
-        readSections();
+        if ($scope.activeSection == null) {
+            readSections();
+            $scope.sectionLoaded = true;
+        }
+
 
 
     });

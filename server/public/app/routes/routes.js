@@ -7,11 +7,15 @@ module.config(
                 templateUrl: 'app/routes/userForm/userForm.html',
                 controller: 'UserFormController'
             }).
-            when('/:section?', {
+            when('/test_aaa', {
+                templateUrl: 'app/routes/userForm/userForm.html',
+                controller: 'UserFormController'
+            }).
+            when('/section_:section', {
                 templateUrl: 'app/routes/notes/notes.html',
                 controller: 'NotesController'
             }).
-            when('/section/:name', {
+            when('/section/:section/add', {
                 templateUrl: 'app/routes/viewSection/viewSection.html',
                 controller: 'ViewSectionController'
             }).
