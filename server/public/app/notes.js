@@ -5,11 +5,16 @@ module.controller('NotesController',
     function($scope, $http, $interval) {
         $scope.notes = [];
         $scope.error = null;
+        $scope.sort = "order";
 
 
         var update = function () {
             var notesUrl = $http.get("/notes");
+            /*var notesUrl = $http.get("/notes", {
+                params: { sort: $scope.sort }
+            });*/
             notesUrl.success(function (notes) {
+                    alert('success: '  + notes);
                     $scope.error = null;
                     $scope.notes = notes;
                 }
@@ -42,6 +47,11 @@ module.controller('NotesController',
         $scope.refresh = function() {
             update();
         };
+
+        $scope.updateSort = function(sort) {
+            $scope.sort = sort;
+            update();
+        }
 
         //$interval(update, 200);
 

@@ -5,6 +5,9 @@
     <script src="app/notes.js"></script>
 
     <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/styles.css">
 </head>
@@ -17,11 +20,28 @@
         Add note: <input ng-model="text" placeholder="Enter your note">
         <button ng-click="add()" class="btn btn-warning">Add note</button>
         <button ng-click="refresh()" class="btn btn-info">Refresh</button>
+        <select ng-model="order">
+            <option value="order">Sort by order</option>
+            <option value="text">Sort alphabetically</option>
+            <option value="date">Sort by date</option>
+        </select>
+
+
     </div>
 </div>
-
 <br>
-
+<div class="container">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SORT BY {{sort}}
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <!-- Add header here -->
+            <li><a href="#" ng-click="updateSort('order')">Sort by order</a></li>
+            <li><a href="#" ng-click="updateSort('text')">Sort alphabetically</a></li>
+            <li><a href="#" ng-click="updateSort('date')">Sort by date</a></li>
+        </ul>
+    </div>
+</div>
 <br>
 
 <div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>
@@ -57,6 +77,7 @@
     </div>
     <br>
 </div>
+
 
 
 </body>

@@ -50,10 +50,17 @@ var getMaxOrder = function(cb) {
 };
 
 app.get("/notes", function(req,res) {
-    console.log("get notes");
+    console.log("get notes: " + req.query.sort);
     db.notes.find(req.query).sort( { order: 1 } ).toArray(function(err, items) {
+        console.log("get notes[e]: " + err);
+        console.log("get notes[i]: " + items);
         res.send(items);
     });
+
+/*    db.notes.find(req.query).sort( { order: 1 } ).toArray(function(err, items) {
+        console.log("get notes[i]: " + items);
+        res.send(items);
+    });*/
 
 });
 
