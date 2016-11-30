@@ -1,4 +1,4 @@
-var module = angular.module('myapp', ['dndLists']);
+
 module.controller('NotesController',
 
     function($scope, $http, $interval) {
@@ -16,11 +16,11 @@ module.controller('NotesController',
                 }
             }).then(
                 function (response) {
-                        $scope.error = null;
-                        $scope.notes = response.data;
-                    },
+                    $scope.error = null;
+                    $scope.notes = response.data;
+                },
                 function (error) {
-                     $scope.error = "Can't connect to the server: " + error;
+                    $scope.error = "Can't connect to the server: " + error;
                 });
         };
 
