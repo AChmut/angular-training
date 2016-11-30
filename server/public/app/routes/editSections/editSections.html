@@ -1,0 +1,23 @@
+
+<!--editing sections-->
+<ul class="list-group" dnd-list="sections">
+    <li href="#" class="list-group-item"
+        dnd-draggable="section"
+        dnd-moved="sections.splice($index, 1); writeSections();"
+        ng-repeat="section in sections"
+
+        ng-click="showSection(section)">
+        {{section.title}}
+    </li>
+</ul>
+
+
+<div class="input-group" style="padding-bottom:20px">
+    <input type="text" class="form-control"
+           placeholder="New section name" ng-model="newSection">
+    <span class="input-group-btn">
+    <!--<input type="text" class="form-control" placeholder="Filter" ng-model="sectionsFilter">-->
+        <button class="btn btn-default" ng-click="addSection()">Add</button>
+    </span>
+
+</div>

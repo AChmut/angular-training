@@ -13,6 +13,7 @@
     <script src="app/routes/notes/notes.js"></script>
     <script src="app/routes/viewSection/viewSection.js"></script>
     <script src="app/routes/userForm/userForm.js"></script>
+    <script src="app/routes/editSections/editSections.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -42,26 +43,12 @@
         <li class="dropdown pull-right">
             <a href="" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="#/sections/edit">Edit Sections</a></li>
+                <li><a href="#/editSections">Edit Sections</a></li>
             </ul>
         </li>
     </ul>
 
 </div>
-
-<!--editing sections-->
-<!--
-<ul class="list-group" dnd-list="sections">
-    <li href="#" class="list-group-item"
-        dnd-draggable="section"
-        dnd-moved="sections.splice($index, 1); writeSections();"
-        ng-repeat="section in sections | filter: {title: sectionsFilter}"
-
-        ng-click="showSection(section)"
-        ng-class="{active: section.title==activeSection}">
-        {{section.title}}
-    </li>
-</ul>-->
 
 <br>
 
@@ -73,15 +60,6 @@
 <!--<div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>-->
 
 
-<!--<div class="input-group" style="padding-bottom:20px">
-    <input type="text" class="form-control"
-           placeholder="New section name" ng-model="newSection">
-    <span class="input-group-btn">
-    &lt;!&ndash;<input type="text" class="form-control" placeholder="Filter" ng-model="sectionsFilter">&ndash;&gt;
-        <button class="btn btn-default" ng-click="addSection()">Add</button>
-    </span>
-
-</div>-->
 
 <!--<div class="container">
     <div class="dropdown">
