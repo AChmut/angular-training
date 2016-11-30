@@ -85,7 +85,7 @@ module.controller('NotesController',
 
         $scope.showSection = function(section) {
             $scope.activeSection = section.title;
-            $location.path(section.title);
+            //$location.path(section.title);
             update();
         };
 

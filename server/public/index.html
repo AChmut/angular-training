@@ -12,6 +12,7 @@
     <script src="app/routes/routes.js"></script>
     <script src="app/routes/notes/notes.js"></script>
     <script src="app/routes/viewSection/viewSection.js"></script>
+    <script src="app/routes/userForm/userForm.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,6 +21,49 @@
 </head>
 
 <body ng-controller="NotesController">
+
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+
+        <li role="presentation" ng-repeat="section in sections">
+            <a href="#{{::section.title}}" ng-click="showSection(section)" aria-controls="profile" role="tab" data-toggle="tab">{{::section.title}}</a>
+        </li>
+
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+        </li>
+        <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a>
+        </li>
+    </ul>
+
+</div>
+
+<!--editing sections-->
+<!--
+<ul class="list-group" dnd-list="sections">
+    <li href="#" class="list-group-item"
+        dnd-draggable="section"
+        dnd-moved="sections.splice($index, 1); writeSections();"
+        ng-repeat="section in sections | filter: {title: sectionsFilter}"
+
+        ng-click="showSection(section)"
+        ng-class="{active: section.title==activeSection}">
+        {{section.title}}
+    </li>
+</ul>-->
+
+<br>
+
+<div class="container" ng-view />
+
+</body>
+</html>
+
+<!--<div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>-->
+
+
 <!--<div class="input-group" style="padding-bottom:20px">
     <input type="text" class="form-control"
            placeholder="New section name" ng-model="newSection">
@@ -29,9 +73,7 @@
     </span>
 
 </div>-->
-<a class="btn btn-default" ng-href="#/register">Register</a>
-<br>
-<br>
+
 <!--<div class="container">
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">SORT BY {{sort}}
@@ -44,28 +86,3 @@
         </ul>
     </div>
 </div>-->
-
-<!--<div class="container" ng-view></div>-->
-<ul class="list-group" dnd-list="sections">
-    <li href="#" class="list-group-item"
-        dnd-draggable="section"
-        dnd-moved="sections.splice($index, 1); writeSections();"
-        ng-repeat="section in sections | filter: {title: sectionsFilter}"
-
-        ng-click="showSection(section)"
-        ng-class="{active: section.title==activeSection}">
-        {{section.title}}
-    </li>
-</ul>
-
-
-
-
-<div class="alert alert-danger" role="alert" ng-if="error">Error: {{error}}</div>
-
-
-
-<div class="container" ng-view></div>
-
-</body>
-</html>
