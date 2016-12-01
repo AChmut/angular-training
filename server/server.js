@@ -59,7 +59,6 @@ app.get("/notes", function(req,res) {
     console.log("get notes: " + sort);
     var keyOrder = {};
     keyOrder[sort] = 1;
-    console.log("get notes, sort: " + keyOrder);
     db.notes.find({section: req.query.section}).sort( keyOrder ).toArray(function(err, items) {
         res.send(items);
     });
