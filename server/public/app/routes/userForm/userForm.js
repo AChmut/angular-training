@@ -1,6 +1,14 @@
 module.controller("UserFormController", function($scope, $http) {
     $scope.user = {};
 
+
+    $scope.submitForm = function() {
+        $http.put("/users", $scope.user) .success(function(data) {
+            console.log("saved!");
+            $location.path("/");
+        });
+    }
+
 });
 
 module.directive("matchTo", function() {
@@ -21,7 +29,6 @@ module.directive("matchTo", function() {
 });
 
 module.directive('uniqueUser', function($http, $q) {
-    var timer;
     return {
         restrict: 'A',
         require: 'ngModel',

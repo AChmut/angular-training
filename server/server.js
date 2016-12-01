@@ -28,6 +28,10 @@ db.open(function(){
     db.collection('sections', function(error, sections) {
         db.sections = sections;
     });
+
+    db.collection('users', function(error, users) {
+        db.users = users;
+    });
 });
 
 
@@ -115,6 +119,7 @@ app.get("/sections", function(req,res) {
 });
 
 app.post("/sections/replace", function(req,resp) { // do not clear the list
+    console.log("POST sections sections/replace");
     if (req.body.length==0) {
         resp.end();
     }
@@ -128,5 +133,14 @@ app.post("/sections/replace", function(req,resp) { // do not clear the list
 });
 
 app.get("/checkUser", function(req,res) {
-    res.send(req.query.user.length>4);
+    console.log("GET checkUser");
+    res.send(req.query.user.length>2);
+});
+
+app.put("/users", function(req,res) {
+    console.log("PUT users");
+    db.users.insert(req.body, function(resp) {
+        req.session.userName = req.body.userName;
+        res.end();
+    });
 });
