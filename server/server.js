@@ -134,7 +134,10 @@ app.post("/sections/replace", function(req,resp) { // do not clear the list
 
 app.get("/checkUser", function(req,res) {
     console.log("GET checkUser");
-    res.send(req.query.user.length>2);
+    db.users.find({userName : req.query.user}).count(function (err, cnt) {
+        res.send(cnt == 0);
+    });
+
 });
 
 app.put("/users", function(req,res) {

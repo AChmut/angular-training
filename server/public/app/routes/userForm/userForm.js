@@ -1,8 +1,10 @@
-module.controller("UserFormController", function($scope, $http) {
+module.controller("UserFormController", function($scope, $http, $location) {
     $scope.user = {};
 
 
-    $scope.submitForm = function() {
+    $scope.submitForm = function(user) {
+        var user = $scope.user;
+        user.rpassword = null;
         $http.put("/users", $scope.user) .success(function(data) {
             console.log("saved!");
             $location.path("/");
