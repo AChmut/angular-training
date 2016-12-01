@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary note">
     <div class="panel-heading">User registration form</div>
     <div class="panel-body">
         <form class="css-form" name="userForm" novalidate>
@@ -15,7 +15,8 @@
                 <label for="birthDate">Date of Birth</label>
                 <input type="text" class="form-control" id="birthDate"
                        name="birthDate" placeholder="Date of birth" ng-model="user.birthDate" ng-pattern="/^[0-9][0-9]\.[0-1][0-9]\.[1-2][0-9][0-9][0-9]$/">
-                <span ng-show="userForm.birthDate.$error.pattern">
+                <span ng-show="userForm.birthDate.$error.pattern" class="error">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                      Date of birth should be in format dd.mm.yyyy
                 </span>
                 <div class="checkbox">
