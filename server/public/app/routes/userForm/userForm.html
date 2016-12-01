@@ -11,7 +11,13 @@
                        name="password" placeholder="Password" ng-model="user.password">
                 <label for="rpassword">Repeat Password</label>
                 <input type="password" class="form-control" id="rpassword"
-                       name="rpassword" placeholder="Repeat Password" ng-model="user.rpassword">
+                       name="rpassword" placeholder="Repeat Password" ng-model="user.rpassword" match-to="user.password">
+                <span class="error"
+                      ng-show="userForm.rpassword.$touched &&
+                               userForm.rpassword.$error.matchTo" >
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                     Passwords should match.<br>
+                </span>
                 <label for="birthDate">Date of Birth</label>
                 <input type="text" class="form-control" id="birthDate"
                        name="birthDate" placeholder="Date of birth" ng-model="user.birthDate" ng-pattern="/^[0-9][0-9]\.[0-1][0-9]\.[1-2][0-9][0-9][0-9]$/">
