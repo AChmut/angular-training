@@ -46,3 +46,30 @@ module.directive('uniqueUser', function($http, $q) {
         }
     }
 });
+
+module.directive("age", function() {
+    return {
+        require: "ngModel",
+        scope: {
+            age: "=age"
+        },
+        link: function(scope, element, attributes, ngModel) {
+            ngModel.$validators.age = function(modelValue) {
+                if (modelValue == null || modelValue.length < 10) {
+                    return true;
+                }
+                // ugly hack to avoid converting to date
+                var input = "" + modelValue.substring(6, 10) + modelValue.substr(3,2) + modelValue.substr(0,2);
+                var date = new Date();
+                var check = "" +
+                    date.getFullYear() - scope.age +
+                    (date.getMonth() < 9 ? 0 : "") +
+                    (date.getMonth() + 1) +
+                    (date.getDate() < 9 ? 0 : "") +
+                    date.getDate();
+
+                return check >= input;
+            };
+        }
+    };
+});
