@@ -5,7 +5,11 @@
             <div class="form-group">
                 <label for="userName">User name</label>
                 <input type="text" class="form-control" id="userName"
-                       name="userName" placeholder="Username" ng-model="user.userName">
+                       name="userName" placeholder="Username" ng-model="user.userName" unique-user >
+                <span ng-show="userForm.userName.$dirty &&
+                          userForm.userName.$error.unique" class="error">
+                          User name is not unique<br>
+                </span>
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password"
                        name="password" placeholder="Password" ng-model="user.password">

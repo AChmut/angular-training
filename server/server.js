@@ -126,3 +126,7 @@ app.post("/sections/replace", function(req,resp) { // do not clear the list
         });
     });
 });
+
+app.get("/checkUser", function(req,res) {
+    res.send(req.query.user.length>4);
+});
