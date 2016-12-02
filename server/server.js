@@ -63,7 +63,7 @@ app.get("/notes", function(req,res) {
     console.log("get notes: " + sort);
     var keyOrder = {};
     keyOrder[sort] = 1;
-    db.notes.find({section: req.query.section}).sort( keyOrder ).toArray(function(err, items) {
+    db.notes.find({section: req.query.section, userName: req.session.userName || "demo"}).sort( keyOrder ).toArray(function(err, items) {
         res.send(items);
     });
 
@@ -113,6 +113,7 @@ app.post("/notes/sendTotTop", function(req,res) {
 
 app.get("/sections", function(req,res) {
     console.log("GET sections");
+    setUserQuery(req);
     db.sections.find(req.query).toArray(function(err, items) {
         res.send(items);
     });
@@ -123,6 +124,7 @@ app.post("/sections/replace", function(req,resp) { // do not clear the list
     if (req.body.length==0) {
         resp.end();
     }
+    setUserQuery(req);
     db.sections.remove({}, function(err, res) {
         if (err) console.log(err);
         db.sections.insert(req.body, function(err, res) {
@@ -147,3 +149,7 @@ app.put("/users", function(req,res) {
         res.end();
     });
 });
+
+function setUserQuery(req) {
+    req.query.userName = req.session.userName || "demo";
+}
