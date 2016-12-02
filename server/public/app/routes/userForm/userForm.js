@@ -38,7 +38,8 @@ module.directive('uniqueUser', function($http, $q) {
             ngModel.$asyncValidators.unique = function(modelValue, viewValue) {
                 var value = modelValue || viewValue;
                 return $http.get('/checkUser?user=' + value). then(function(response) {
-                    if (!response.data) { return $q.reject();
+                    if (!response.data) {
+                        return $q.reject();
                     }
                     return true;
                 });

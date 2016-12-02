@@ -150,6 +150,23 @@ app.put("/users", function(req,res) {
     });
 });
 
+app.post("/login", function(req,res) {
+    console.log("POST login [" + req.body.login + "]");
+
+    db.users.find( {
+        //userName : 'xZ_',
+        userName : req.body.login,
+        //password : '123'
+        password : req.body.password
+    }).toArray(function(err, items) {
+        if (items.length>0) {
+          req.session.userName = req.body.login;
+        }
+        res.send(items.length>0);
+    });
+});
+
+
 function setUserQuery(req) {
     req.query.userName = req.session.userName || "demo";
 }

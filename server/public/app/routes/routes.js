@@ -19,6 +19,10 @@ module.config(
                 templateUrl: 'app/routes/viewSection/viewSection.html',
                 controller: 'ViewSectionController'
             }).
+            when('/signin', {
+                templateUrl: 'app/routes/login/signin.html',
+                controller: 'LoginController'
+            }).
             otherwise({
                 redirectTo: '/'
             })

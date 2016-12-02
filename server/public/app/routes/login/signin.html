@@ -1,0 +1,19 @@
+<div class="panel panel-primary note">
+    <div class="panel-heading">User sign in</div>
+    <div class="panel-body">
+        <form class="css-form" name="signinForm" novalidate ng-submit="login()">
+            <div class="form-group">
+                <label for="userName">User name</label>
+                <input type="text" class="form-control" id="userName"
+                       name="userName" placeholder="Username" ng-model="username" >
+
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password"
+                       name="password" placeholder="Password" ng-model="userpassword">
+
+                <br>
+                <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Sign in</button>
+            </div>
+        </form>
+    </div>
+</div>
