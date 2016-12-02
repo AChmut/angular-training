@@ -34,11 +34,17 @@
             <a ng-href="#section_{{::section.title}}" aria-controls="profile" role="tab" data-toggle="tab">{{::section.title}}</a>
         </li>
 
-        <li class="dropdown pull-right">
+        <li class="dropdown pull-right" ng-show="loggedIn == null">
             <a href="" data-toggle="dropdown" class="dropdown-toggle">User <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="#signin">Sign In</a></li>
-                <li><a href="#register">Register</a></li>
+                <li><a href="#register">Register </a></li>
+            </ul>
+        </li>
+        <li class="dropdown pull-right" ng-show="loggedIn != null">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">{{loggedIn}}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#logout">Log out</a></li>
             </ul>
         </li>
         <li class="dropdown pull-right">

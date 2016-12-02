@@ -1,7 +1,7 @@
 
 module.controller('NotesController',
 
-    function($scope, $http, $routeParams, $location) {
+    function($scope, $http, $routeParams) {
         $scope.activeSection = $routeParams.section;
         $scope.notes = [];
         $scope.error = null;
@@ -59,6 +59,8 @@ module.controller('NotesController',
             $scope.sectionLoaded = true;
         }
 
-
+        $scope.$on('loggedIn', function(event, user) {
+            $scope.loggedIn = user;
+        });
 
     });
