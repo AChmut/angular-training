@@ -13,7 +13,12 @@
 
                 <br>
                 <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Sign in</button>
+                <div ng-show="wrongPassword" class="error">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    Wrong username or password
+                </div>
             </div>
         </form>
+
     </div>
 </div>

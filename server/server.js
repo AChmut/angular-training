@@ -63,7 +63,7 @@ app.get("/notes", function(req,res) {
     console.log("get notes: " + sort);
     var keyOrder = {};
     keyOrder[sort] = 1;
-    db.notes.find({section: req.query.section, userName: req.session.userName || "demo"}).sort( keyOrder ).toArray(function(err, items) {
+    db.notes.find({section: req.query.section, userName: req.session.userName }).sort( keyOrder ).toArray(function(err, items) {
         res.send(items);
     });
 
@@ -154,9 +154,7 @@ app.post("/login", function(req,res) {
     console.log("POST login [" + req.body.login + "]");
 
     db.users.find( {
-        //userName : 'xZ_',
         userName : req.body.login,
-        //password : '123'
         password : req.body.password
     }).toArray(function(err, items) {
         if (items.length>0) {
@@ -168,5 +166,5 @@ app.post("/login", function(req,res) {
 
 
 function setUserQuery(req) {
-    req.query.userName = req.session.userName || "demo";
+    req.query.userName = req.session.userName;
 }
