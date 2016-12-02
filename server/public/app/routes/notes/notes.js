@@ -1,7 +1,7 @@
 
 module.controller('NotesController',
 
-    function($scope, $http, $routeParams) {
+    function($scope, $http, $routeParams, $rootScope) {
         $scope.activeSection = $routeParams.section;
         $scope.notes = [];
         $scope.error = null;
@@ -62,5 +62,10 @@ module.controller('NotesController',
         $scope.$on('loggedIn', function(event, user) {
             $scope.loggedIn = user;
         });
+
+        $scope.logout = function () {
+            $rootScope.$broadcast('loggedOut');
+            $scope.loggedIn = null;
+        }
 
     });

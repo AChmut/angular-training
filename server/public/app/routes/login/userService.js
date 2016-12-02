@@ -20,5 +20,16 @@ module.factory("UserService", function($http, $q) {
         return deferred.promise;
 
     };
+
+    service.logout = function () {
+        var deferred = $q.defer();
+
+        $http.post("/logout", {}).success(function (res) {
+            deferred.resolve("logged out");
+        });
+
+        return deferred.promise;
+    };
+
     return service;
 });

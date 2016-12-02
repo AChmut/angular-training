@@ -6,8 +6,8 @@ module.controller("LoginController", function($scope, $location, UserService, $r
             .then(
                 function() {
                     $rootScope.$broadcast('loggedIn', $scope.username);
-                    $scope.loggedIn = true;
-                    $scope.wrongPassword = false;
+
+                    //$scope.wrongPassword = false;
                     $location.path("/");
                     $route.reload();
                 },
@@ -16,4 +16,14 @@ module.controller("LoginController", function($scope, $location, UserService, $r
                 }
         );
     }
+
+    $scope.$on('loggedOut', function(event, user) {
+        UserService.logout()
+            .then(
+            function() {
+                $location.path("/signin");
+                $route.reload();
+            }
+        );
+    });
 });
