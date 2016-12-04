@@ -63,7 +63,8 @@ app.get("/notes", function(req,res) {
     console.log("get notes: " + sort);
     var keyOrder = {};
     keyOrder[sort] = 1;
-    db.notes.find({section: req.query.section, userName: req.session.userName }).sort( keyOrder ).toArray(function(err, items) {
+    db.notes.find({section: req.query.section, userName: req.session.userName }).
+        sort( keyOrder ).toArray(function(err, items) {
         res.send(items);
     });
 
@@ -74,6 +75,7 @@ app.put("/notes", function(req, res) {
     getMaxOrder(function(order) {
         req.body.time = new Date();
         req.body.order = order + 1;
+        req.body.userName = getUserName(req);
         db.notes.insert(req.body);
         res.end();
     });
@@ -114,9 +116,12 @@ app.post("/notes/sendTotTop", function(req,res) {
 app.get("/sections", function(req,res) {
     console.log("GET sections");
     setUserQuery(req);
-    db.sections.find(req.query).toArray(function(err, items) {
+    db.sections.find({user: getUserName(req)}).toArray(function(err, items) {
+        console.log(items);
         res.send(items);
     });
+        //res.send(['Default section']);
+    return;
 });
 
 app.post("/sections/replace", function(req,resp) { // do not clear the list
@@ -124,8 +129,15 @@ app.post("/sections/replace", function(req,resp) { // do not clear the list
     if (req.body.length==0) {
         resp.end();
     }
-    setUserQuery(req);
-    db.sections.remove({}, function(err, res) {
+
+    var userName = getUserName(req);
+    req.body.forEach(function(item) {
+        if (item.user == null) {
+            item.user = userName;
+        }
+    });
+
+    db.sections.remove({user : userName}, function(err, res) {
         if (err) console.log(err);
         db.sections.insert(req.body, function(err, res) {
             if (err) console.log("err after insert",err);
@@ -164,7 +176,21 @@ app.post("/login", function(req,res) {
     });
 });
 
+app.post("/logout", function(req,res) {
+    console.log("POST logout");
+    req.session.userName = null;
+});
+
 
 function setUserQuery(req) {
     req.query.userName = req.session.userName;
+}
+
+function getUserName(req) {
+    var userName = req.session.userName;
+    if (userName == null) {
+        userName = 'guest';
+    }
+    return userName;
+
 }

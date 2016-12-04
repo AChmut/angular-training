@@ -19,6 +19,6 @@ module.controller("EditSectionsController", function($scope, $http) {
         //$scope.activeSection = $scope.newSection;
         $scope.newSection = "";
         $scope.writeSections();
-        update();
+        //update();
     };
 });

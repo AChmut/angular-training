@@ -6,6 +6,7 @@ module.controller('NotesController',
         $scope.notes = [];
         $scope.error = null;
         $scope.sort = "order";
+        $scope.sections = ["Test section"];
 
 
         var update = function () {
@@ -50,6 +51,7 @@ module.controller('NotesController',
 
             $http.get("/sections")
                 .success(function(sections) {
+                    alert(sections);
                     $scope.sections = sections;
                 });
         };
@@ -61,11 +63,13 @@ module.controller('NotesController',
 
         $scope.$on('loggedIn', function(event, user) {
             $scope.loggedIn = user;
+            readSections();
         });
 
         $scope.logout = function () {
             $rootScope.$broadcast('loggedOut');
             $scope.loggedIn = null;
+            readSections();
         }
 
     });
